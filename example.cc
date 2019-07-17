@@ -1,22 +1,6 @@
-## Micro Unit Test
-
-Micro unit-test library for c++ projects
-See mut.h and example.cc to get usage and help  
-
-### Install
-No installation, it's headers-only, just one mut.h file!
-
-### Run Sample
-```shell
-cd mut
-./preview.sh
-```
-On my linux, the output likes below:
-
-![Image text](https://github.com/alexloser/mut/blob/master/screenshot.png)
-
-### Usage(example.cc):
-```cpp
+/**
+ * A sample of my micro unit test library
+ */
 #include <string>
 #include "mut.h"
 using namespace std;
@@ -61,13 +45,13 @@ MICRO_UNIT(Test_const)
     ASSERT_FALSE((1024 << 2) == 2048)
 }
 
+
 int main(int argc, char* argv[])
 {
     mut::unit_tester::run();
     return 0;
 }
 
-```
 
 
 
