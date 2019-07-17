@@ -199,10 +199,23 @@ protected:
     }
 
 // Check a particular test condition, not equal
-// Check a particular test condition, equal
 #define ASSERT_NE(X, Y) \
     if (!(X!=Y)) {                                                           \
         MUT_LOG_BAD << "Assert-NotEqual failed: " #X " != " #Y << std::endl; \
+        FAIL();                                                              \
+    }
+
+// Check a particular test condition, x less than y
+#define ASSERT_LT(X, Y) \
+    if (!(X<Y)) {                                                          \
+        MUT_LOG_BAD << "Assert-LessThan failed: " #X " < " #Y << std::endl;   \
+        FAIL();                                                             \
+    }
+
+// Check a particular test condition, x greater than y
+#define ASSERT_GT(X, Y) \
+    if (!(X>Y)) {                                                           \
+        MUT_LOG_BAD << "Assert-GreatThan failed: " #X " > " #Y << std::endl; \
         FAIL();                                                              \
     }
 
