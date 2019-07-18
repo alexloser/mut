@@ -162,7 +162,7 @@ protected:
     void function(mut::unit_function_result* __microunit_testresult)
 
 // Pass the test and return from the test case.
-#define PASS() \
+#define MUT_PASS() \
     {                                                               \
         MUT_LOG_GOOD << "Test stopped: Pass" << std::endl;          \
         __microunit_testresult->success = true;                     \
@@ -170,7 +170,7 @@ protected:
     }
 
 // Fail the test and return from the test case.
-#define FAIL() \
+#define MUT_FAIL() \
     {                                                               \
         MUT_LOG_BAD << "Test stopped: Fail" << std::endl;           \
         __microunit_testresult->success = false;                    \
@@ -181,43 +181,49 @@ protected:
 #define ASSERT_TRUE(condition) \
     if (!(condition)) {                                                 \
         MUT_LOG_BAD << "Assert-True failed: " #condition << std::endl;  \
-        FAIL();                                                         \
+        MUT_FAIL();                                                     \
     }
 
 // Check a particular test condition. If the condition holds, fail the test and return.
 #define ASSERT_FALSE(condition) \
     if((condition)) {                                                   \
         MUT_LOG_BAD << "Assert-False failed: " #condition << std::endl; \
-        FAIL();                                                         \
+        MUT_FAIL();                                                     \
     }
 
 // Check a particular test condition, equal
 #define ASSERT_EQ(X, Y) \
     if (!(X==Y)) {                                                          \
         MUT_LOG_BAD << "Assert-Equal failed: " #X " == " #Y << std::endl;   \
-        FAIL();                                                             \
+        MUT_FAIL();                                                         \
     }
 
 // Check a particular test condition, not equal
 #define ASSERT_NE(X, Y) \
     if (!(X!=Y)) {                                                           \
         MUT_LOG_BAD << "Assert-NotEqual failed: " #X " != " #Y << std::endl; \
-        FAIL();                                                              \
+        MUT_FAIL();                                                          \
     }
 
 // Check a particular test condition, x less than y
 #define ASSERT_LT(X, Y) \
-    if (!(X<Y)) {                                                          \
-        MUT_LOG_BAD << "Assert-LessThan failed: " #X " < " #Y << std::endl;   \
-        FAIL();                                                             \
+    if (!(X<Y)) {                                                            \
+        MUT_LOG_BAD << "Assert-LessThan failed: " #X " < " #Y << std::endl;  \
+        MUT_FAIL();                                                          \
     }
 
 // Check a particular test condition, x greater than y
 #define ASSERT_GT(X, Y) \
-    if (!(X>Y)) {                                                           \
+    if (!(X>Y)) {                                                            \
         MUT_LOG_BAD << "Assert-GreatThan failed: " #X " > " #Y << std::endl; \
-        FAIL();                                                              \
+        MUT_FAIL();                                                          \
     }
+
+
+#ifndef MICRO_UNIT_TEST_MAIN
+#define MICRO_UNIT_TEST_MAIN int main(int argc, char* argv[], char* env[])
+#endif
+
 
 #endif  // end MUT_USER_MACROS
 

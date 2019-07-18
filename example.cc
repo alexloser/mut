@@ -43,6 +43,9 @@ MICRO_UNIT(Test_strequ)
 MICRO_UNIT(Test_const)
 {
     ASSERT_FALSE((1024 << 2) == 2048)
+    if (float(1.0000000001f) == float(1.0f)) {
+        MUT_PASS()
+    }
 }
 
 
