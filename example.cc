@@ -49,10 +49,10 @@ MICRO_UNIT(Test_const)
 }
 
 
-int main(int argc, char* argv[])
+MICRO_UNIT_TEST_MAIN
 {
-    mut::unit_tester::run();
-    return 0;
+    bool ok = mut::unit_tester::run();
+    return ok ? EXIT_SUCCESS : EXIT_FAILURE;
 }
 
 
