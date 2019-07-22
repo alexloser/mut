@@ -15,6 +15,9 @@ On my linux, the output likes below:
 
 ![Image text](https://github.com/alexloser/mut/blob/master/screenshot.png)
 
+If redirect to logfile, the terminus control charactors will be written too. 
+Using mutclean.py script to remove them.
+
 ### Usage(example.cc):
 ```cpp
 #include <string>
