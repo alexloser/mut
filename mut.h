@@ -12,6 +12,8 @@
 // Linux terminator color code
 #ifndef MUT_COLOR_CODE
 #define MUT_COLOR_CODE
+#define MUT_COLOR_DEBUG  "\033[01;34m"
+#define MUT_COLOR_GRAY0  "\033[00;37m"
 #define MUT_COLOR_GRAY   "\033[01;37m"
 #define MUT_COLOR_GREEN  "\033[01;32m"
 #define MUT_COLOR_RED    "\033[01;31m"
@@ -22,20 +24,25 @@
 
 // Macro for writing to the terminal an INFO-level log
 #ifndef MUT_INFO
-#define MUT_INFO        std::cerr << MUT_COLOR_YELLOW << "[INFO] " << MUT_COLOR_GRAY
+#define MUT_INFO        std::cerr << MUT_COLOR_YELLOW << "[INFO]  " << MUT_COLOR_GRAY
 #define MUT_LOG_INFO    MUT_INFO << __FILE__ << ":" << __LINE__ << ": "
 #endif
 
 // Macro for writing to the terminal a BAD-level log
 #ifndef MUT_BAD
-#define MUT_BAD         std::cerr << MUT_COLOR_RED << "[BAD!] " << MUT_COLOR_GRAY
+#define MUT_BAD         std::cerr << MUT_COLOR_RED << "[BAD!]  " << MUT_COLOR_GRAY
 #define MUT_LOG_BAD     MUT_BAD << __FILE__ << ":" << __LINE__ << ": "
 #endif
 
 // Macro for writing to the terminal a GOOD-level log
 #ifndef MUT_GOOD
-#define MUT_GOOD        std::cerr << MUT_COLOR_GREEN << "[GOOD] " << MUT_COLOR_GRAY
+#define MUT_GOOD        std::cerr << MUT_COLOR_GREEN << "[GOOD]  " << MUT_COLOR_GRAY
 #define MUT_LOG_GOOD    MUT_GOOD << __FILE__ << ":" << __LINE__ << ": "
+#endif
+
+// Macro for writing to the terminal an DEBUG info from tested program
+#ifndef MUT_DEBUG
+#define MUT_DEBUG       std::cerr << MUT_COLOR_DEBUG << "[DEBUG] " << MUT_COLOR_GRAY0
 #endif
 
 #ifndef MUT_LOG_SEP
@@ -73,10 +80,12 @@ public:
     // Run all the registered unit test cases, returns True if all tests pass, false otherwise.
     static bool run()
     {
-        std::vector<std::string> failures, sucesses;
-        MUT_INFO << "Will run " << instance().unit_functions.size() << " test cases" << std::endl;
+        MUT_INFO << MUT_COLOR_YELLOW
+                 << "Will Run " << instance().unit_functions.size() << " Test Cases"
+                 << MUT_COLOR_GRAY << std::endl;
 
-        // Iterate all registered unit tests
+        std::vector<std::string> failures, sucesses;
+        // Starts unit tests
         for (auto& unit : instance().unit_functions) {
             MUT_LOG_SEP;
             MUT_INFO << "Test case '" << unit.first << "'" << std::endl;
@@ -105,7 +114,7 @@ public:
 
         // Output result summary
         if (failures.empty()) {
-            MUT_GOOD << "All tests passed" << std::endl;
+            MUT_GOOD << MUT_COLOR_YELLOW << "All tests passed!" << MUT_COLOR_GRAY << std::endl;
             MUT_LOG_SEP;
             return true;
         }
@@ -226,7 +235,6 @@ protected:
 
 
 #endif  // end MUT_USER_MACROS
-
 
 
 
