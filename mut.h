@@ -1,6 +1,7 @@
 /**
  * Micro unit test headers-only library for cpp, need c++11 supported
  * Copyright, AlexLoser, Sebastiao Salvador, all rights reserved.
+ * See https://github.com/alexloser/mut for more details.
  */
 #pragma once
 #include <cstring>
