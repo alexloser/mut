@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 # -*- coding:utf-8 -*-
-# author : cypro666
+# Clean output of mut
 import re
 import sys
 
