@@ -169,13 +169,13 @@ protected:
 #define MICRO_UNIT(function)                                             \
     void function(mut::unit_function_result*);                           \
     MUT_REGISTER(function);                                              \
-    void function(mut::unit_function_result* __microunit_testresult)
+    void function(mut::unit_function_result* __mut_result)
 
 // Pass the test and return from the test case.
 #define MUT_PASS() \
     {                                                               \
         MUT_LOG_GOOD << "Test stopped: Pass" << std::endl;          \
-        __microunit_testresult->success = true;                     \
+        __mut_result->success = true;                     \
         return;                                                     \
     }
 
@@ -183,7 +183,7 @@ protected:
 #define MUT_FAIL() \
     {                                                               \
         MUT_LOG_BAD << "Test stopped: Fail" << std::endl;           \
-        __microunit_testresult->success = false;                    \
+        __mut_result->success = false;                    \
         return;                                                     \
     }
 
@@ -231,7 +231,7 @@ protected:
 
 
 #ifndef MICRO_UNIT_TEST_MAIN
-#define MICRO_UNIT_TEST_MAIN int main(int argc, char* argv[], char* env[])
+#define MICRO_UNIT_TEST_MAIN int main(int argc, char* argv[])
 #endif
 
 
