@@ -42,8 +42,9 @@ MICRO_UNIT(Test_strequ)
 
 MICRO_UNIT(Test_const)
 {
-    MUT_DEBUG << "This is debug message" << std::endl;
-    ASSERT_FALSE((1024 << 2) == 2048)
+    const int SOMEVAR = 2;
+    MUT_DEBUG(SOMEVAR);
+    ASSERT_FALSE((1024 << SOMEVAR) == 2048)
     if (float(1.0000000001f) == float(1.0f)) {
         MUT_PASS()
     }
@@ -52,7 +53,7 @@ MICRO_UNIT(Test_const)
 
 MICRO_UNIT_TEST_MAIN
 {
-    bool ok = mut::unit_tester::run();
+    bool ok = mut::unit_tester::run(true);
     return ok ? EXIT_SUCCESS : EXIT_FAILURE;
 }
 
